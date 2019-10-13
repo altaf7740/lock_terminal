@@ -20,6 +20,7 @@ set_passwd(){
         (openssl passwd -1 -salt ahcdarkshine "$sec2")
         (openssl passwd -1 -salt ahcdarkshine "$sec3")
     } > ~/.profile_lock_term.txt 
+    echo -e "\nall done\n"
     else
     echo -e "\npassword not matched"
     set_passwd
