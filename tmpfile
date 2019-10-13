@@ -25,7 +25,7 @@ set_passwd(){
     set_passwd
     fi
     }
-    if [ "$1" = 94abd87ac03c5901e285fba99e6048c2 ] || [ "$1" = a6ea8aa1b931765cc7ff20436ecb48ed ]
+    if [ "$1" = 3b56e351b79dd5ec2fae48b2feb56aa3 ] || [ "$1" = a6ea8aa1b931765cc7ff20436ecb48ed ]
     then 
     set_passwd
     else
