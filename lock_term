@@ -1,0 +1,51 @@
+#!/bin/bash
+set -e 
+set -o pipefail
+trap : HUP INT QUIT TSTP
+trap 'echo -e "\nDont try to be Over Smart okay!\nenter password to unlock : \c" ' 2
+attempt=0
+echo -e " _ _   _       _               _            _ \n(_) |_( )___  | |    ___   ___| | _____  __| |\n| | __|// __| | |   / _ \\ / __| |/ / _ \\/ _\` |\n| | |_  \\__ \\ | |__| (_) | (__|   <  __/ (_| |\n|_|\\__| |___/ |_____\\___/ \___|_|\\_\\___|\\__,_|"
+king(){
+echo -e "\nenter password to unlock :\c"
+read -rs password
+tmphash=$(openssl passwd -6 -salt ahcdarkshine "$password")
+savedhash=$(head -1 ~/.profile_lock_term.txt)
+if  [ "$tmphash" = "$savedhash" ]
+then
+    clear
+else
+    clear
+    sleep 0.15
+    echo -e "\nwrong password, enter again"
+    attempt=$((1+"$attempt"))
+    if [ "$attempt" -gt 3 ]
+    then 
+	read -r -p "forgot password and want to reset (y/n): " answer
+      if [ "$answer" = y ]
+      then
+      echo -e "\nwhat is your childhood name? :\c"
+	read -r sec1
+	echo -e "\nwhat is your hobby? :\c"
+	read -r sec2
+	echo -e "\nwhats your fav place? :\c"
+	read -r sec3
+	prev_sec1=$(< ~/.profile_lock_term.txt head -2 |tail -1)
+	prev_sec2=$(< ~/.profile_lock_term.txt head -3 |tail -1)
+	prev_sec3=$(tail -1 ~/.profile_lock_term.txt)
+	new_sec1=$(openssl passwd -1 -salt ahcdarkshine "$sec1")
+	new_sec2=$(openssl passwd -1 -salt ahcdarkshine "$sec2")
+	new_sec3=$(openssl passwd -1 -salt ahcdarkshine "$sec3")
+	if [ "$new_sec1" = "$prev_sec1" ] && [ "$new_sec2" = "$prev_sec2" ] && [ "$new_sec3" = "$prev_sec3" ] 
+	then
+		filehash=$(< /bin/lock_term md5sum|cut -b 1-32)
+		.setpasswd "$filehash"
+	else
+		echo -e "\nwrong answer"
+		fi
+#here it will match the hash value with the records
+      fi
+      fi      
+    king
+fi
+}
+king

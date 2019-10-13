@@ -1,0 +1,33 @@
+#!/bin/bash
+set -e 
+set -o pipefail
+set_passwd(){
+    echo -e "\nenter new password : \c"
+    read -rs password1
+    echo -e "\nrepeat password : \c"
+    read -rs password2
+    if [ "$password1" = "$password2" ]
+    then
+    echo -e "\n\nset some security question\nwhat is your childhood name : \c"
+    read -r sec1
+	echo -e "\nwhat is your hobby? :\c"
+	read -r sec2
+	echo -e "\nwhats your fav place? :\c"
+	read -r sec3
+    {
+        (openssl passwd -6 -salt ahcdarkshine "$password1")
+        (openssl passwd -1 -salt ahcdarkshine "$sec1")
+        (openssl passwd -1 -salt ahcdarkshine "$sec2")
+        (openssl passwd -1 -salt ahcdarkshine "$sec3")
+    } > ~/.profile_lock_term.txt 
+    else
+    echo -e "\npassword not matched"
+    set_passwd
+    fi
+    }
+    if [ "$1" = 94abd87ac03c5901e285fba99e6048c2 ] || [ "$1" = a6ea8aa1b931765cc7ff20436ecb48ed ]
+    then 
+    set_passwd
+    else
+    echo -e "\nnot allowed to change\n"
+    fi
