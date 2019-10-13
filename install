@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e 
+set -o pipefail
+echo -e "\nplease wait its processing ..."
+sudo mv lock_term /usr/bin || exit
+echo lock_term>>~/.bashrc
+sudo mv tmpfile /usr/bin/.setpasswd
+filehash=$(< install.sh md5sum|cut -b 1-32)
+.setpasswd "$filehash"
+cd ..
+rm -rf lock_term
