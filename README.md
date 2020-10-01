@@ -1,4 +1,4 @@
-# lock_terminal
+# Lock_Terminal
 it is a program that helps you to lock your terminal.
 it is only for linux operating system created in unix programming language.
 it user hashing technique to store the password and other stuff.
