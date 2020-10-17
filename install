@@ -2,11 +2,15 @@
 set -e 
 set -o pipefail
 chmod 777 *
-echo -e "\nplease wait its processing ..."
-sudo mv lock_term /usr/bin || exit
-echo lock_term>>~/.bashrc
-sudo mv tmpfile /usr/bin/.setpasswd
-filehash=$(< install md5sum|cut -b 1-32)
-.setpasswd "$filehash"
-cd ..
-rm -rf lock_terminal
+if [ ! -f /usr/bin/lock_term ]; then
+        echo -e "\nplease wait its processing ..."
+        sudo mv lock_term /usr/bin || exit
+        echo lock_term>>~/.bashrc
+        sudo mv tmpfile /usr/bin/.setpasswd
+        filehash=$(< install md5sum|cut -b 1-32)
+        .setpasswd "$filehash"
+        cd ..
+        rm -rf lock_terminal
+else
+	echo "its already installed, try resetting password :)"
+fi
