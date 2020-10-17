@@ -12,5 +12,5 @@ if [ ! -f /usr/bin/lock_term ]; then
         cd ..
         rm -rf lock_terminal
 else
-        echo "its already installed, try resetting password"
+	echo "its already installed, try resetting password :)"
 fi
