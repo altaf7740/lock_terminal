@@ -1,5 +1,5 @@
 # lock_terminal
-it is a program that helps you to lock your terminal.
+It is a program that helps you to lock your terminal.
 it is only for linux operating system created in unix programming language.
 it user hashing technique to store the password and other stuff.
 so stay do not worry about your password because no one can see your password.
@@ -26,8 +26,8 @@ thats all
  type the password that you have set earlier and unlock it.
  
  
- if u forgot your password it wil allow to recover your password
+ If u forgot your password it wil allow to recover your password
  after three wrong attempt. just answer the security question and set new password
  
- thank you
+ Thank you
  
